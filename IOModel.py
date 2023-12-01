@@ -1,6 +1,6 @@
 #python filename.py
 
-import Jetson.GPIO as GPIO
+import jetson.GPIO as GPIO
 import jetson.inference
 import jetson.utils
 import botActions

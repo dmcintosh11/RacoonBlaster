@@ -11,7 +11,7 @@ net = jetson.inference.detectNet('ssd-mobilenet-v2', threshold=0.5)
 camera = jetson.utils.gstCamera(1280, 720, '/dev/video0')
 display = jetson.utils.glDisplay()
 
-bot = botActions(motor_pin=20)
+#bot = botActions(motor_pin=20)
 
 #Loops infinitely while the GUI is open
 while display.IsOpen():
@@ -21,12 +21,13 @@ while display.IsOpen():
     detections = net.Detect(img, width, height)
     display.RenderOnce(img, width, height)
     display.SetTitle("Object Detection | Network {:.0f} FPS".format(net.GetNetworkFPS()))
-    
+
+    print(detections[0])
     
     
     #Checks if there is a racoon to shoot
-    if 'racoon' in detections and not bot.is_shooting(): #Probably needs to parse detections better
-        bot.threaded_shoot_racoon()
+    #if 'racoon' in detections and not bot.is_shooting(): #Probably needs to parse detections better
+    #    bot.threaded_shoot_racoon()
     
-bot.clean()
-del bot
+#bot.clean()
+#del bot
